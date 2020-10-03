@@ -1,7 +1,13 @@
 # SpeechRecognition
 
-## MGC
+## CTCR
 
-MGC - Music Genre Classification
+CTCR - 
 
-##
+## MGCC
+
+MGCC - Music Genre Classification CNN
+
+## SRTT
+
+SRTT - 
