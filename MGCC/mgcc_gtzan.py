@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
         data, fs = librosa.load(file)
 
-        log_mel = np.log10(librosa.feature.melspectrogram(data, fs, window="hann") + 1.0)
+        log_mel = np.log(librosa.feature.melspectrogram(data, fs, window="hamming") + 1e-6)
         
         for i in range(len(log_mel) // img_width):
             audio_list.append(log_mel[:, i * img_width:(i + 1) * img_width])
