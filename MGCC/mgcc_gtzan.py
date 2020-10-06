@@ -33,13 +33,12 @@ if __name__ == "__main__":
 
         data, fs = librosa.load(file)
 
-        mel = librosa.feature.melspectrogram(data, fs)
-        log = np.log10(mel + 1.0)
-
-        for i in range(len(log) // img_width):
-            audio_list.append(log[:, i * img_width:(i + 1) * img_width])
+        log_mel = np.log10(librosa.feature.melspectrogram(data, fs, window="hann") + 1.0)
+        
+        for i in range(len(log_mel) // img_width):
+            audio_list.append(log_mel[:, i * img_width:(i + 1) * img_width])
             label_list.append(label)
-
+    
     gtzan_audio = np.array(audio_list, dtype="float32").reshape(-1, img_channel, img_height, img_width)
     gtzan_label = np.identity(num_classes)[label_list].astype("float32")
 
