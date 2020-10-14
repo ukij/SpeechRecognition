@@ -12,6 +12,6 @@ MGCC - Music Genre Classification CNN
   <img src="MGCC/log-mel_spectrogram.png">
 </p>
 
-## SRCT
+## STTT
 
-SRCT - 
+STTT - 
