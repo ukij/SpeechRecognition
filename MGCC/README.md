@@ -1,6 +1,6 @@
 # MGCC
 
-MGCC - Music Genre Classification CNN
+Genre Classification - Music Genre Classification CNN
 
 <p aling="center">
   <img src="./log-mel_spectrogram.png">
