@@ -2,11 +2,11 @@
 
 ## CTCR
 
-CTCR - Connectionist Temporal Classification RNN
+Phoneme Prediction - Connectionist Temporal Classification RNN
 
 ## MGCC
 
-MGCC - Music Genre Classification CNN
+Genre Classification - Music Genre Classification CNN
 
 <p aling="center">
   <img src="MGCC/log-mel_spectrogram.png">
