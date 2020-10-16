@@ -14,4 +14,4 @@ Genre Classification - Music Genre Classification CNN
 
 ## STTT
 
-STTT - 
+ - 
