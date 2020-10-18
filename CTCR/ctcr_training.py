@@ -109,8 +109,8 @@ if __name__ == "__main__":
         # loss and error logging
         #
         logging["epoch"].append(epoch + 1)
-        logging["loss"].append(epoch_loss)
-        logging["error"].append(epoch_metric)
+        logging["loss"].append(epoch_loss / num_samples)
+        logging["error"].append(epoch_metric / num_samples)
 
         trainer.summarize_training_progress()
 
