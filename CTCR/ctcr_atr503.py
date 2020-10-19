@@ -45,7 +45,7 @@ def atr503_features(data_file, aud_list, phn_list, fs=16000):
         # waveform
         data = np.fromfile(aud_file, dtype=">i2").astype("int16")
 
-        norm = data / 32768.0  # normalization [-1, 1]
+        norm = data / 32767.0  # normalization [-1, 1]
         pre_emp = signal.lfilter([1.0, -0.97], 1, norm)  # pre-emphasize filter
 
         # phone label
