@@ -32,13 +32,15 @@ def create_reader(scp_path, mlf_path, list_path, is_train):
 
 def ctcr(h):
     with C.layers.default_options(enable_self_stabilization=True):
-        h = Dense(num_hidden, activation=C.relu)(h)
-
         for i in range(num_stack):
-            h_forward = LayerNormalization()(Recurrence(LSTM(num_hidden // 2))(h))
-            h_backward = LayerNormalization()(Recurrence(LSTM(num_hidden // 2), go_backwards=True)(h))
-
-            h = Dropout(dropout_rate=0.1)(C.splice(h_forward, h_backward)) + h
+            if i == 0:
+                h_forward = LayerNormalization()(Recurrence(LSTM(num_hidden // 2))(h))
+                h_backward = LayerNormalization()(Recurrence(LSTM(num_hidden // 2), go_backwards=True)(h))
+                h = Dropout(dropout_rate=0.1)(C.splice(h_forward, h_backward))
+            else:
+                h_forward = LayerNormalization()(Recurrence(LSTM(num_hidden // 2))(h))
+                h_backward = LayerNormalization()(Recurrence(LSTM(num_hidden // 2), go_backwards=True)(h))
+                h = Dropout(dropout_rate=0.1)(C.splice(h_forward, h_backward)) + h
 
         h = Dense(num_label)(h)
 
