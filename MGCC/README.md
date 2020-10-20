@@ -2,12 +2,12 @@
 
 Genre Classification - Music Genre Classification CNN
 
-<p aling="center">
+<p align="center">
   <img src="./log-mel_spectrogram.png">
 </p>
 
 ## Results
 
-<p aling="center">
+<p align="center">
   <img src="./confusion_matrix.png">
 </p>
