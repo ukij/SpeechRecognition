@@ -5,6 +5,9 @@
 Phoneme Prediction - Connectionist Temporal Classification RNN
 
 ```text
+Say...
+Record.
+['sil', 'h', 'o', 'h', 'i', 'cl', 'ch', 'i', 'e', 'o', 'a', 'sil']
 ```
 
 ## MGCC
