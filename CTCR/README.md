@@ -2,7 +2,7 @@
 
 Phoneme Prediction - Connectionist Temporal Classification RNN
 
-<p aling="center">
+<p align="center">
   <img src="ctc.png">
 </p>
 
