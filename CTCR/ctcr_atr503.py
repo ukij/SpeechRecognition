@@ -35,13 +35,13 @@ def features_htk(filename, features, sample_period=100000, sample_kind=9):
         f.write(bytecode)
 
 
-def atr503_features(data_file, aud_list, phn_list, fs=16000):
+def atr503_features(data_file, ad_list, phn_list, fs=16000):
     num_samples = 0
 
     scp_file = open("./%s_atr503.scp" % data_file, "w")
     mlf_file = open("./%s_atr503.mlf" % data_file, "w")
     mlf_file.write("#!MLF!#\n")
-    for i, (aud_file, phn_file) in enumerate(zip(aud_list, phn_list)):
+    for i, (aud_file, phn_file) in enumerate(zip(ad_list, phn_list)):
         # waveform
         data = np.fromfile(aud_file, dtype=">i2").astype("int16")
 
@@ -110,14 +110,14 @@ if __name__ == "__main__":
     if not os.path.exists("./val_atr503"):
         os.mkdir("./val_atr503")
 
-    aud_list = glob.glob("./atr_503/speech/*.ad")
+    ad_list = glob.glob("./atr_503/speech/*.ad")
     phn_list = glob.glob("./atr_503/label/monophone/old/*.lab")
 
     #
     # split train and val
     #
-    train_aud_list, val_aud_list, train_phn_list, val_phn_list = train_test_split(aud_list, phn_list,
-                                                                                  test_size=0.1, random_state=0)
+    train_ad_list, val_ad_list, train_phn_list, val_phn_list = train_test_split(ad_list, phn_list, test_size=0.1,
+                                                                                random_state=0)
 
     #
     # make .list file
@@ -142,6 +142,6 @@ if __name__ == "__main__":
     #
     # script and model label file
     #
-    atr503_features("train", train_aud_list, train_phn_list)
-    atr503_features("val", val_aud_list, val_phn_list)
+    atr503_features("train", train_ad_list, train_phn_list)
+    atr503_features("val", val_ad_list, val_phn_list)
     
