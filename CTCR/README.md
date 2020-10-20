@@ -9,4 +9,7 @@ Phoneme Prediction - Connectionist Temporal Classification RNN
 ## Results
 
 ```text
+Say...
+Record.
+['sil', 'h', 'o', 'h', 'i', 'cl', 'ch', 'i', 'e', 'o', 'a', 'sil']
 ```
