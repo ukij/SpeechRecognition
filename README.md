@@ -14,10 +14,10 @@ Record.
 
 Genre Classification - Music Genre Classification CNN
 
-<p aling="center">
+<p align="center">
   <img src="MGCC/log-mel_spectrogram.png">
 </p>
 
 ## STTT
 
- - 
+Speech To Text - 
