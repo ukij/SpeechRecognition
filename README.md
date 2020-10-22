@@ -21,3 +21,7 @@ Genre Classification - Music Genre Classification CNN
 ## STTT
 
 Speech To Text - 
+
+## VT
+
+Voice Translation - 
