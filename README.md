@@ -20,7 +20,7 @@ Genre Classification - Music Genre Classification CNN
 
 ## STTT
 
-Speech To Text - 
+Speech To Text - Speech To Text Transformer
 
 ## VT
 
