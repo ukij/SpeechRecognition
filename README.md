@@ -22,6 +22,10 @@ Genre Classification - Music Genre Classification CNN
 
 Speech To Text - Speech To Text Transformer
 
+<p align="center">
+  <img src="STTT/sttt.png">
+</p>
+
 ## VT
 
 Voice Translation - 
