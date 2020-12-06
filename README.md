@@ -25,6 +25,6 @@ Speech To Text - Speech To Text Transformer
 ```text
 ```
 
-## VT
+## VTCG
 
 Voice Translation - 
