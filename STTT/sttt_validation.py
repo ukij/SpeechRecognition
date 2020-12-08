@@ -159,11 +159,11 @@ def sttt_bleu(num_samples):
             try:
                 prob = model.eval({model.arguments[1]: data[model.arguments[1]].data,
                                    model.arguments[0]: np.vstack((text, dummy))})[0]
+                pred = np.identity(num_word, dtype="float32")[prob.argmax(axis=1)[-1]].reshape(1, -1)
+                text = np.concatenate((text, pred), axis=0)
+                if prob.argmax(axis=1)[-1] == EOS:
+                    break
             except RuntimeError:
-                break
-            pred = np.identity(num_word, dtype="float32")[prob.argmax(axis=1)[-1]].reshape(1, -1)
-            text = np.concatenate((text, pred), axis=0)
-            if prob.argmax(axis=1)[-1] == EOS:
                 break
 
         reference = id2word(target.argmax(axis=1), spm_model)
