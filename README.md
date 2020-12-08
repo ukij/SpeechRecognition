@@ -22,8 +22,9 @@ Genre Classification - Music Genre Classification CNN
 
 Speech To Text - Speech To Text Transformer
 
-```text
-```
+<p align="center">
+  <img src="STTT/features.png">
+</p>
 
 ## VTCG
 
