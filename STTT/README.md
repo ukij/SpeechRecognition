@@ -7,3 +7,9 @@ Speech To Text - Speech To Text Transformer
 </p>
 
 ## Results
+
+```text
+Say...
+Record.
+> 
+```
