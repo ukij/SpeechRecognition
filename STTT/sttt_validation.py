@@ -19,7 +19,7 @@ UNK = 0
 BOS = 1
 EOS = 2
 
-MAX = 35
+MAX = 33
 
 
 class SentencePiece:
