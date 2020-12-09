@@ -137,9 +137,9 @@ def BertPositionwiseFeedForward(outer_dim, inner_dim, dropout_rate, name=''):
     return bert_positionwise_feedforward
 
 
-def sequential_convolution(encode):
+def sequential_convolution(h):
     with C.layers.default_options(init=C.normal(0.02), pad=True, bias=False, map_rank=1, use_cntk_engine=True):
-        h = SequentialConvolution(513, 128, pad=False, strides=64)(encode)
+        h = SequentialConvolution(513, 128, pad=False, strides=64)(h)
         h = BatchNormalization()(h)
         h = Cx.mish(h)
 
