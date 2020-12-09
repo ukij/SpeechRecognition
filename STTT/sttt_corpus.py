@@ -94,12 +94,12 @@ def sttt_speech2text(threshold):
             data /= np.abs(data).max()  # normalization
             wave = data[np.where(np.abs(data) > threshold)]  # remove no sound zone
 
-            for (idx, frame) in zip_longest(ids, wave, fillvalue=""):
-                frame_str = " ".join(np.ascontiguousarray(frame, dtype="float32").astype(str))
+            for (idx, value) in zip_longest(ids, wave, fillvalue=""):
+                value_str = " ".join(np.ascontiguousarray(value, dtype="float32").astype(str))
                 if idx == "":
-                    map_file.write("{} |speech {}\n".format(i, frame_str))
+                    map_file.write("{} |speech {}\n".format(i, value_str))
                 else:
-                    map_file.write("{} |text {}:1\t|speech {}\n".format(i, idx, frame_str))
+                    map_file.write("{} |text {}:1\t|speech {}\n".format(i, idx, value_str))
 
             num_samples += 1
             if num_samples % 1000 == 0:
