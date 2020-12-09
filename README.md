@@ -26,6 +26,6 @@ Speech To Text - Speech To Text Transformer
   <img src="STTT/features.png">
 </p>
 
-## VTCG
+## VCCG
 
-Voice Translation - 
+Voice Conversion - 
