@@ -13,7 +13,7 @@ Speech To Text - Speech To Text Transformer
 ```text
 Say...
 Record.
-> 彼、ひどくひどくひどく距離などを照ら照らいた。
+>> 夫の死後定一個の上になどがんなどままくる。
 ```
 
 ### Features
