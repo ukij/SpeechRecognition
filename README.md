@@ -29,3 +29,8 @@ Speech To Text - Speech To Text Transformer
 ## VCCG
 
 Voice Conversion - 
+
+## WaveNet
+
+WaveNet - 
+
