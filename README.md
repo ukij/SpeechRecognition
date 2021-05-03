@@ -28,9 +28,9 @@ Speech To Text - Speech To Text Transformer
 
 ## VCCG
 
-Voice Conversion - 
+Voice Conversion - Voice Conversion
 
 ## WaveNet
 
-WaveNet - 
+WaveNet - Generative Audio WaveNet
 
