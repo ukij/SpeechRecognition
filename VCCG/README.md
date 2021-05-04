@@ -1,3 +1,0 @@
-# VCCG
-
-Voice Conversion - 
