@@ -26,11 +26,10 @@ Speech To Text - Speech To Text Transformer
   <img src="STTT/features.png">
 </p>
 
-## VCCG
+## VCWR
 
 Voice Conversion - Voice Conversion
 
-## WaveNet
+## WNAS
 
-WaveNet - Generative Audio WaveNet
-
+Audio Synthesis - WaveNet Audio Synthesis
