@@ -92,7 +92,7 @@ def sttt_speech2text(threshold):
             filename = file.split(".")[0]
 
             data, sr = librosa.load("./common_voice/%s/%s.wav" % (data_file, filename), sr=sampling_rate)
-            data, _ = librosa.effects.trim(data, top_db=threshold)
+            data, _ = librosa.effects.trim(data, top_db=threshold)  # remove no sound zone
             data /= np.abs(data).max()  # normalization
 
             for (idx, value) in zip_longest(ids, data, fillvalue=""):
