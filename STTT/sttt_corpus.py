@@ -9,6 +9,8 @@ from itertools import zip_longest
 
 data_file = "validated"
 
+sampling_rate = 48000
+
 num_word = 8000
 
 UNK = 0
@@ -89,12 +91,11 @@ def sttt_speech2text(threshold):
             #
             filename = file.split(".")[0]
 
-            data, fs = librosa.load("./common_voice/%s/%s.wav" % (data_file, filename))
-
+            data, sr = librosa.load("./common_voice/%s/%s.wav" % (data_file, filename), sr=sampling_rate)
+            data, _ = librosa.effects.trim(data, top_db=threshold)
             data /= np.abs(data).max()  # normalization
-            wave = data[np.where(np.abs(data) > threshold)]  # remove no sound zone
 
-            for (idx, value) in zip_longest(ids, wave, fillvalue=""):
+            for (idx, value) in zip_longest(ids, data, fillvalue=""):
                 value_str = " ".join(np.ascontiguousarray(value, dtype="float32").astype(str))
                 if idx == "":
                     map_file.write("{} |speech {}\n".format(i, value_str))
@@ -114,5 +115,5 @@ if __name__ == "__main__":
 
     sttt_sentencepiece()
 
-    sttt_speech2text(threshold=0.01)
+    sttt_speech2text(threshold=20)
     
