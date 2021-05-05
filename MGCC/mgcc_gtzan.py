@@ -31,9 +31,9 @@ if __name__ == "__main__":
     for file in wav_list:
         label = label_dict[file.rsplit("\\")[-1].split(".", 1)[0]]
 
-        data, fs = librosa.load(file)
+        data, sr = librosa.load(file)
 
-        log_mel = np.log(librosa.feature.melspectrogram(data, fs, window="hamming") + 1e-6)
+        log_mel = np.log(librosa.feature.melspectrogram(data, sr, window="hamming") + 1e-6)
         
         for i in range(len(log_mel) // img_width):
             audio_list.append(log_mel[:, i * img_width:(i + 1) * img_width])
