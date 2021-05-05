@@ -12,7 +12,7 @@ EOS = 2
 
 MAX = 33
 
-threshold = 0.01
+threshold = 20
 vad_threshold = 0.03
 
 
@@ -34,7 +34,7 @@ class SentencePiece:
         return self.model.decode_pieces(pieces)
 
 
-def record(mic_index, time, fs=16000, frames_per_buffer=1024):
+def record(mic_index, time, fs=48000, frames_per_buffer=1024):
     audio = pyaudio.PyAudio()
     data = []
     dt = 1 / fs
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     # speech to text
     #
     while True:
-        data = record(1, time=5, fs=22050) / (2 ** 16 / 2 - 1)
+        data = record(1, time=5, fs=48000) / (2 ** 16 / 2 - 1)
 
         if np.sum(np.where(np.abs(data[20000:]) > vad_threshold)) == 0:
             print("\nI couldn't detect voice activity...\n")
@@ -79,10 +79,10 @@ if __name__ == "__main__":
         #
         # preprocessing
         #
+        data, _ = librosa.effects.trim(data, top_db=threshold)  # remove no sound zone
         data /= np.abs(data).max()  # normalization
-        wave = data[np.where(np.abs(data) > threshold)]  # remove no sound zone
 
-        wave = np.ascontiguousarray(wave.reshape(-1, 1), dtype="float32")
+        data = np.ascontiguousarray(data.reshape(-1, 1), dtype="float32")
 
         #
         # convolution and transformer
@@ -91,7 +91,7 @@ if __name__ == "__main__":
         dummy = np.identity(num_word, dtype="float32")[EOS].reshape(1, -1)
 
         for _ in range(MAX):
-            prob = model.eval({model.arguments[1]: wave, model.arguments[0]: np.vstack((text, dummy))})[0]
+            prob = model.eval({model.arguments[1]: data, model.arguments[0]: np.vstack((text, dummy))})[0]
             pred = np.identity(num_word, dtype="float32")[prob.argmax(axis=1)[-1]].reshape(1, -1)
             text = np.concatenate((text, pred), axis=0)
             if prob.argmax(axis=1)[-1] == EOS:
