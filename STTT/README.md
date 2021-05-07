@@ -13,7 +13,7 @@ Speech To Text - Speech To Text Transformer
 ```text
 Say...
 Record.
->> 夫の死後定一個の上になどがんなどままくる。
+>> 夫に死なれて彼女は整頓されていた。
 ```
 
 ### Features
