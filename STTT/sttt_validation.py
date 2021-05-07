@@ -12,6 +12,9 @@ from nltk.translate.bleu_score import sentence_bleu
 
 data_file = "dev"
 
+sampling_rate = 16000
+threshold = 20
+
 num_hidden = 512
 num_word = 8000
 
@@ -181,7 +184,7 @@ def sttt_bleu(num_samples):
 if __name__ == "__main__":
     sttt_mp3wav()
     
-    sttt_speech2text(threshold=20)
+    sttt_speech2text(threshold)
 
     sttt_bleu(num_samples=1219)
     
