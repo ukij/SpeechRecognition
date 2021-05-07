@@ -35,7 +35,7 @@ class SentencePiece:
         return self.model.decode_pieces(pieces)
 
 
-def record(mic_index, time, fs=48000, frames_per_buffer=1024):
+def record(mic_index, time, fs=16000, frames_per_buffer=1024):
     audio = pyaudio.PyAudio()
     data = []
     dt = 1 / fs
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     # speech to text
     #
     while True:
-        data = record(1, time=5, fs=48000) / (2 ** 16 / 2 - 1)
+        data = record(1, time=5) / (2 ** 16 / 2 - 1)
 
         if np.sum(np.where(np.abs(data[20000:]) > vad_threshold)) == 0:
             print("\nI couldn't detect voice activity...\n")
