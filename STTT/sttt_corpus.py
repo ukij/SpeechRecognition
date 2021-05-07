@@ -10,6 +10,7 @@ from itertools import zip_longest
 data_file = "validated"
 
 sampling_rate = 48000
+threshold = 20
 
 num_word = 8000
 
@@ -115,5 +116,5 @@ if __name__ == "__main__":
 
     sttt_sentencepiece()
 
-    sttt_speech2text(threshold=20)
+    sttt_speech2text(threshold)
     
