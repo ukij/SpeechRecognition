@@ -26,7 +26,7 @@ Speech To Text - Speech To Text Transformer
   <img src="STTT/features.png">
 </p>
 
-## VCWR
+## VC
 
 Voice Conversion - Voice Conversion
 
