@@ -1,3 +1,3 @@
-# VCWR
+# VC
 
 Voice Conversion - Voice Conversion 
