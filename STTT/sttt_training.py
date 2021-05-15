@@ -138,7 +138,7 @@ def BertPositionwiseFeedForward(outer_dim, inner_dim, dropout_rate, name=''):
 
 
 def sequential_convolution(h):
-    with C.layers.default_options(init=C.normal(0.02), pad=True, bias=False, map_rank=1, use_cntk_engine=True):
+    with C.layers.default_options(init=C.he_normal(), pad=True, bias=False, map_rank=1, use_cntk_engine=True):
         h = SequentialConvolution(513, 128, pad=False, strides=64)(h)
         h = BatchNormalization()(h)
         h = Cx.mish(h)
@@ -157,7 +157,7 @@ def sequential_convolution(h):
 def sttt(encode, decode):
     spc_embed = _inject_name(sequential_convolution(encode), "features")
     pe = PositionalEncoding(num_hidden)
-    txt_embed, dense = Embedding(num_hidden, init=C.normal(0.02), enable_weight_tying=True)
+    txt_embed, dense = Embedding(num_hidden, enable_weight_tying=True)
 
     #
     # encoder
