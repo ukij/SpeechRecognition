@@ -137,7 +137,7 @@ if __name__ == "__main__":
             list_file.write("%s\n" % label)
         list_file.write("%s" % label_list[-1])
 
-    print("Number of labels : %d\n" % len(label_list))
+    print("Number of labels : %d" % len(label_list))
 
     #
     # script and model label file
