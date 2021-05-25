@@ -47,7 +47,7 @@ def ctcr(h):
         return h
 
 
-def connectionist_temporal_classification_loss(output_vector, target_vector, blank_id, delay_const=-1):
+def ctc_loss(output_vector, target_vector, blank_id, delay_const=-1):
     return C.forward_backward(
         C.labels_to_graph(target_vector), output_vector, blankTokenId=blank_id, delayConstraint=delay_const)
 
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     #
     # loss function and error metrics
     #
-    loss = connectionist_temporal_classification_loss(model, label, blank_id, delay_const=3)
+    loss = ctc_loss(model, label, blank_id, delay_const=3)
     errs = C.edit_distance_error(model, label, squashInputs=True, tokensToIgnore=[blank_id])
 
     #
