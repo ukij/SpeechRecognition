@@ -13,7 +13,7 @@ Speech To Text - Speech To Text Transformer
 ```text
 Say...
 Record.
->> 夫に死なれて彼女は整頓されていた。
+>> 部屋はきれいに整頓されていだった。
 ```
 
 ### Features
