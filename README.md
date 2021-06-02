@@ -33,3 +33,7 @@ Voice Conversion - Voice Conversion
 ## WNAS
 
 Audio Synthesis - WaveNet Audio Synthesis
+
+<p align="center">
+  <img src="WNAS/wavenet_waveform.png">
+</p>
