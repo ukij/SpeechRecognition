@@ -9,7 +9,7 @@ from itertools import zip_longest
 
 data_file = "validated"
 
-sampling_rate = 48000
+sampling_rate = 16000
 threshold = 20
 
 num_word = 8000
@@ -75,7 +75,12 @@ def sttt_speech2text(threshold):
     num_samples = 0
     max_seq_len = 0
 
-    with open("./train_sttt_map.txt", "w") as map_file:
+    if data_file == "validated":
+        train_or_val = "train"
+    else:
+        train_or_val = "val"
+
+    with open("./mapfile/%s_sttt_map.txt" % train_or_val, "w") as map_file:
         for i, (file, text) in enumerate(train):
             #
             # word2id
@@ -97,7 +102,7 @@ def sttt_speech2text(threshold):
             data /= np.abs(data).max()  # normalization
 
             for (idx, value) in zip_longest(ids, data, fillvalue=""):
-                value_str = " ".join(np.ascontiguousarray(value, dtype="float32").astype(str))
+                value_str = str(value)
                 if idx == "":
                     map_file.write("{} |speech {}\n".format(i, value_str))
                 else:
