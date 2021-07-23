@@ -1,21 +1,10 @@
 import cntk as C
-import librosa
 import nltk
 import numpy as np
-import os
-import pandas as pd
 import sentencepiece as spm
-import subprocess
 
-from itertools import zip_longest
 from nltk.translate.bleu_score import sentence_bleu
 
-data_file = "dev"
-
-sampling_rate = 16000
-threshold = 20
-
-num_hidden = 512
 num_word = 8000
 
 UNK = 0
@@ -48,69 +37,6 @@ def create_reader(path, is_train):
         speech=C.io.StreamDef(field="speech", shape=1, is_sparse=False),
         text=C.io.StreamDef(field="text", shape=num_word, is_sparse=True))),
                                 randomize=is_train, max_sweeps=C.io.INFINITELY_REPEAT if is_train else 1)
-
-
-def sttt_mp3wav():
-    df = pd.read_table("./common_voice/%s.tsv" % data_file, sep="\t")
-
-    if not os.path.exists("./common_voice/%s" % data_file):
-        os.mkdir("./common_voice/%s" % data_file)
-
-    mp3_list = df["path"].to_list()
-    for mp3_file in mp3_list:
-        filename = mp3_file.split(".")[0]
-        cmd = "ffmpeg -i ./common_voice/clips/%s.mp3 ./common_voice/%s/%s.wav" % (filename, data_file, filename)
-
-        subprocess.call(cmd, shell=True)
-
-
-def sttt_speech2text(threshold):
-    #
-    # sentence piece
-    #
-    spm_model = SentencePiece("./corpus.model")
-
-    df = pd.read_table("./common_voice/%s.tsv" % data_file, sep="\t")
-
-    valid = df[["path", "sentence"]].to_numpy()
-
-    num_samples = 0
-    max_seq_len = 0
-
-    with open("./val_sttt_map.txt", "w") as map_file:
-        for i, (file, text) in enumerate(valid):
-            #
-            # word2id
-            #
-            ids = spm_model.encode(text)
-            ids.insert(0, BOS)
-            ids.append(EOS)
-
-            if len(ids) > max_seq_len:
-                max_seq_len = len(ids)
-
-            #
-            # features
-            #
-            filename = file.split(".")[0]
-
-            data, sr = librosa.load("./common_voice/%s/%s.wav" % (data_file, filename), sr=sampling_rate)
-            data, _ = librosa.effects.trim(data, top_db=threshold)  # remove no sound zone
-            data /= np.abs(data).max()  # normalization
-
-            for (idx, value) in zip_longest(ids, wave, fillvalue=""):
-                value_str = " ".join(np.ascontiguousarray(value, dtype="float32").astype(str))
-                if idx == "":
-                    map_file.write("{} |speech {}\n".format(i, value_str))
-                else:
-                    map_file.write("{} |text {}:1\t|speech {}\n".format(i, idx, value_str))
-
-            num_samples += 1
-            if num_samples % 1000 == 0:
-                print("Now %d samples..." % num_samples)
-
-    print("\nNumber of samples", num_samples)
-    print("\nMaximum Sequence Length", max_seq_len)
 
 
 def sttt_bleu(num_samples):
@@ -182,9 +108,5 @@ def sttt_bleu(num_samples):
 
 
 if __name__ == "__main__":
-    sttt_mp3wav()
-    
-    sttt_speech2text(threshold)
-
     sttt_bleu(num_samples=1219)
     
