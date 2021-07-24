@@ -30,10 +30,10 @@ Speech To Text - Speech To Text Transformer
 
 Voice Conversion - Voice Conversion
 
-## WNAS
+## WaveNet
 
 Audio Synthesis - WaveNet Audio Synthesis
 
 <p align="center">
-  <img src="WNAS/wavenet_waveform.png">
+  <img src="WaveNet/wavenet_waveform.png">
 </p>
