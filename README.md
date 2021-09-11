@@ -26,14 +26,12 @@ Speech To Text - Speech To Text Transformer
   <img src="STTT/features.png">
 </p>
 
-## VC
+## VCWR
 
-Voice Conversion - Voice Conversion
+Voice Conversion - Voice Conversion WaveRNN
+
 
 ## WaveNet
 
 Audio Synthesis - WaveNet Audio Synthesis
 
-<p align="center">
-  <img src="WaveNet/wavenet_waveform.png">
-</p>
