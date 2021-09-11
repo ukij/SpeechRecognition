@@ -31,7 +31,7 @@ Speech To Text - Speech To Text Transformer
 Voice Conversion - Voice Conversion WaveRNN
 
 
-## WaveNet
+## WNAS
 
 Audio Synthesis - WaveNet Audio Synthesis
 
